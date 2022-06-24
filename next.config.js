@@ -1,6 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+  strictMode: true,
+  trailingSlash : true,
+  images: {
+    domains: ['images.unsplash.com'],
+    loader: 'akamai',
+    path: '',
+  },
 }
-
-module.exports = nextConfig
