@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import style from '../../styles/each.module.css'
 import * as fs from "fs"; 
 
@@ -14,7 +14,7 @@ function Slug(props) {
       <div className={style.div1}>
       <h1 className={style.title}>{data && data.title.toUpperCase()}</h1>
       
-      {data.content &&<div className={style.disc} dangerouslySetInnerHTML={createMarkup(data.content)} />}
+      {data &&<div className={style.disc} dangerouslySetInnerHTML={createMarkup(data.content)} />}
       <p className={style.date}>{data && data.date}</p>
       </div>
     )
