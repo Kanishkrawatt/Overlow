@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import style from '../../styles/each.module.css'
 import * as fs from "fs"; 
 
+
+
 function Slug(props) {
   function createMarkup(d) {
     return {__html: d};

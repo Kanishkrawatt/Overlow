@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Nevbar from "../components/nevbar"
 import Head from 'next/head'
 
+
 function MyApp({ Component, pageProps }) {
   return <>
   <Head>
