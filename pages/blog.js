@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "../styles/blog.module.css";
-import Link from "next/link";
+import BlogFrame from "../components/blogFrame";
 import * as fs from "fs";
 import Image from "next/image";
 
@@ -13,24 +13,7 @@ function Blog(props) {
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2">
           {blog.map((item) => {
             return (
-              <div key={item.slug} className="flex ">
-              <Link  href={`/blogp/${item.slug}`}>
-                <div className="flex flex-col md:flex-row  bg-white shadow-lg">
-                    <img className=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src={item.img} alt="Sunset in the mountains"/>
-                  <div className="p-6 flex flex-col justify-start">
-                    <h1 className="text-gray-900 text-xl font-medium mb-5">
-                      {item.title.toUpperCase()}
-                    </h1>
-                    
-                    <p className="text-gray-700 mb-4">
-                      {item.disc.substr(0,100)}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm italic mt-5 ">{item.date}</p>
-                  </div>
-                </div>
-                </Link>
-              </div>
+              <BlogFrame key={item.slug} Item={item} />
               
             );
           })}
