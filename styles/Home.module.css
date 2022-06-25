@@ -1,7 +1,7 @@
 
 .main {
-  padding: 4rem 0;
   display: flex;
+  height: 200vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -105,7 +105,7 @@
 .banner{
   width: 100vw;
   object-fit: cover;
-  height: 95vh;
+  height: 100vh;
 }
 
 @media (max-width: 600px) {
@@ -115,14 +115,3 @@
   }
 }
 
-.nevbar ul{
-  display: flex;
-  justify-content: center;
-  max-height: 0.1rem;
-}
-.nevbar li{
-  list-style: none;
-  margin-top: 1.3rem;
-  padding: 0 20px;
-  font-size: x-small;
-}
