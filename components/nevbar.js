@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import styles from '../styles/navbar.module.css'
 import Link from 'next/link'
-
+import Autherntication from './autherntication';
 
 function nevbar() {
   const [navbar,changeNavbar]=useState(true);
   const navbarcolor= ()=>{
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
     if(window.scrollY >=40){
         changeNavbar(false);
     }
@@ -25,6 +25,7 @@ function nevbar() {
           <Link href="/about"><li>About</li></Link>          
           <Link href="/contact"><li>Contact</li></Link>
           <Link href="/blog"><li>Blog</li></Link>
+          <li><Autherntication /></li>
           
         </ul>
       </div>
