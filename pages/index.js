@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/Home.module.css'
 import * as fs from "fs";
+import Foot from '../components/Foot'
 import BlogFrame from "../components/blogFrame";
 
 
@@ -23,8 +24,8 @@ function Home(props) {
       
       {/* <img className={styles.banner} src="img/front.jpg" /> */}
       </div>
-      <div className="block h-[35rem] w-[100vw] bg-white">
-        <div className='grid min-h-[18rem] w-[90vw] mx-auto mt-[5vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2' >
+      <div className="block h-[60rem] w-[100%] px-5 py-[10%] bg-white lg:h-[35rem] ">
+        <div className='grid min-h-[18rem] w-[90vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2' >
         {blog.map((item)=>{return(
         <BlogFrame key={item.slug} Item ={item}/>)})}
           
@@ -36,8 +37,9 @@ function Home(props) {
 
       </main>
 
-
+      <Foot/>
     </div>
+    
   )
 }
 export async function getStaticProps(context) {
