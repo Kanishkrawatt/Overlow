@@ -16,10 +16,12 @@ function Home(props) {
       <div className='h-[100vh]'>
       <div className="absolute">
 
-
+      <h1 className="absolute top-[15rem] font-Dosis text-5xl inline left-[25rem] -z-[0]"></h1>
+      <p></p>
       </div>
       <img className={styles.banner} src='https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'/>
-
+      
+      {/* <img className={styles.banner} src="img/front.jpg" /> */}
       </div>
       <div className="block h-[35rem] w-[100vw] bg-white">
         <div className='grid min-h-[18rem] w-[90vw] mx-auto mt-[5vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2' >
