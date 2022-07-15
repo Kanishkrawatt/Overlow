@@ -6,7 +6,7 @@ function blogFrame(props) {
   return (
     <div key={item.slug} className="flex ">
       
-        <div  className="min-w-[400px] max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
+        <div  className="w-[300px] md:min-w-[400px] max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
           {/* <a href="#" >
             <img
                className="rounded-t-lg"
