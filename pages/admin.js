@@ -13,8 +13,10 @@ function admin() {
       let date = d.toDateString();
       let img = BlogImg;
       let data = {"title":BlogTitle,"disc":BlogDisc,"slug":BlogSlug,"content":BlogContent,date,img};
-      fetch('http://localhost:3000/api/createblog/', {
-        method: 'POST', // or 'PUT'
+      let url = 'https://blogwebsite-five.vercel.app/api/createblog/';
+      let lurl = 'http://localhost:3000/api/createblog/' ;
+      fetch(lurl, {
+        method: 'POST', 
         body: JSON.stringify(data),
       })
       .then(response => response.json())
