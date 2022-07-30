@@ -20,6 +20,8 @@
     "react-firebase-hooks": "^5.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/eslint-parser": "^7.18.9",
     "autoprefixer": "^10.4.7",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.1.0",
