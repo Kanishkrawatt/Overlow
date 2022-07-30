@@ -6,7 +6,7 @@ import "firebase/database";
 const firebaseConfig = {
   // ...
   // The value of `databaseURL` depends on the location of the database
-  databaseURL: "https://overlow-63b9d-default-rtdb.firebaseio.com/",
+  databaseURL: NEXT_PUBLIC_FB_DatabaseUrl,
 };
 
 // Initialize Firebase
