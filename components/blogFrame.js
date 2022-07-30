@@ -7,13 +7,13 @@ function blogFrame(props) {
     <div key={item.slug} className="flex ">
       
         <div  className="w-[300px] md:min-w-[400px] max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
-          {/* <a href="#" >
+          <a href="#" >
             <img
                className="rounded-t-lg"
               src={item.img}
               alt=""
             />
-          </a> */}
+          </a>
           <div  className="p-5">
             <a href="#">
               <h5  className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
