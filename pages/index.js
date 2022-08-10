@@ -15,7 +15,6 @@ function Home(props) {
         <div className="h-[100vh]">
           <div className="absolute">
             <h1 className="absolute top-[15rem] font-Dosis text-5xl inline left-[25rem] -z-[0]">
-              Overlow
             </h1>
             <p></p>
           </div>
