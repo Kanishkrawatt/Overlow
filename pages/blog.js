@@ -10,7 +10,7 @@ function Blog(props) {
     <div>
       <div className={style.container}>
         <h1 className={style.blog}>Blogs</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2">
+        <div className="grid min-h-[18rem] w-[90vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
           {blog.map((item) => {
             return (
               <BlogFrame key={item.slug} Item={item} />
