@@ -3,7 +3,6 @@ import styles from "../styles/Home.module.css";
 import * as fs from "fs";
 import Foot from "../components/Foot";
 import BlogFrame from "../components/blogFrame";
-
 function Home(props) {
   const [blog, setblog] = useState(props.array.slice(-3, props.array.length));
   return (
@@ -13,8 +12,9 @@ function Home(props) {
       
       <section id="MainPage">
         <div className="h-[100vh]">
-          <div className="absolute">
-            <h1 className="absolute top-[15rem] font-Dosis text-5xl inline left-[25rem] -z-[0]">
+            <div >
+            <h1 className="flex justify-center text-6xl pt-[40vh] relative top-4 text-Dosis sm:pt-[35vh]" >
+              Overlow
             </h1>
             <p></p>
           </div>
@@ -26,9 +26,9 @@ function Home(props) {
         </div>
         </section>
         <section id="blogs">
-        <h1 className="flex justify-center text-3xl font-bold pt-10 relative top-12"> Blogs</h1>
-        <div className="block w-[100%] px-[3%] py-[10%] bg-white lg:h-[35rem] ">
-          <div className="grid min-h-[18rem] w-[90vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+        <h1 className="flex justify-center text-6xl pt-10 relative top-4 text-Dosis">Latest Blogs</h1>
+        <div className="flex justify-center h-auto w-[100%] py-[10%] bg-white ">
+          <div className="flex justify-center flex-wrap gap-5 sm:gap-20">
             {blog.map((item) => {
               return <BlogFrame key={item.slug} Item={item} />;
             })}

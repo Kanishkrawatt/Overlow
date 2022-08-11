@@ -1,9 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Dosis:wght@200&family=Lobster&display=swap');
 @layer base{
     body::-webkit-scrollbar {
         display: none;
       }
+}
+@layer components{
+    .text-Dosis{
+      font-family: 'Dosis', sans-serif;
+      
+    }
+    .text-Lobster{
+      font-family: 'Lobster', cursive;
+    }
+    .text-Cinzel{
+      font-family: 'Cinzel', serif;
+    }
 }

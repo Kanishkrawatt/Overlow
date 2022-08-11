@@ -9,8 +9,8 @@ function Blog(props) {
   return (
     <div>
       <div className={style.container}>
-        <h1 className={style.blog}>Blogs</h1>
-        <div className="grid min-h-[18rem] w-[90vw] gap-[5rem] grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+        <h1 className={`${style.blog} mb-5`}>Blogs</h1>
+        <div className="flex justify-center flex-wrap gap-5  sm:gap-20 ">
           {blog.map((item) => {
             return (
               <BlogFrame key={item.slug} Item={item} />
