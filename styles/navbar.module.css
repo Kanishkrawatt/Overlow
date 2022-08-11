@@ -8,6 +8,7 @@
 .nevbarul{
     display: flex;
     justify-content: center;
+    cursor: pointer;
   }
 .nevbarul li{
     list-style: none;
@@ -22,6 +23,8 @@
     z-index: 2;
     width: 100vw;
     height:60px;
+    cursor: pointer;
+
 }
 
 .logo{
@@ -33,3 +36,9 @@
     background-color:black;
     transform: translateX(8px);
 }
+
+@media (max-width: 600px) {
+    .nevbarul{
+        display: none;
+    }
+  }

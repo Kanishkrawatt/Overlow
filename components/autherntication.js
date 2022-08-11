@@ -6,8 +6,8 @@ import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import {signInWithGoogle,signOutWithGoogle} from "../firebase/Signin";
-import {firebaseconfig} from "../firebase/firebaseconfig"
+import { signInWithGoogle, signOutWithGoogle } from "../firebase/Signin";
+import { firebaseconfig } from "../firebase/firebaseconfig";
 firebase.initializeApp(firebaseconfig);
 
 const auth = firebase.auth();
@@ -22,11 +22,11 @@ function autherntication() {
 function SignIn() {
   const [user] = useAuthState(auth);
   const signIn = () => {
-    signInWithGoogle()
+    signInWithGoogle();
   };
-  const signOut=()=>{
-    signOutWithGoogle()
-  }
+  const signOut = () => {
+    signOutWithGoogle();
+  };
   let photoURL;
   if (user !== null) {
     photoURL = user.photoURL;
@@ -35,9 +35,13 @@ function SignIn() {
     <>
       <button
         className="block h-[40px] w-[40px] rounded-full bg-black text-white absolute right-[50px] top-3 border-black"
-        onClick={user?signOut:signIn}
+        onClick={user ? signOut : signIn}
       >
-        {user ? <img className="rounded-full " src={photoURL} alt="img"/> : "N/A"}
+        {user ? (
+          <img className="rounded-full " src={photoURL} alt="img" />
+        ) : (
+          "N/A"
+        )}
       </button>
     </>
   );
