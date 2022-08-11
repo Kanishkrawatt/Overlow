@@ -12,7 +12,7 @@ function Home(props) {
       
       <section id="MainPage">
         <div className="h-[100vh]">
-          <div >
+            <div >
             <h1 className="flex justify-center text-6xl pt-[40vh] relative top-4 text-Dosis sm:pt-[35vh]" >
               Overlow
             </h1>
