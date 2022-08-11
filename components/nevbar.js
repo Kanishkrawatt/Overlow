@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/navbar.module.css";
 import Link from "next/link";
 import Autherntication from "./autherntication";
+import HamburgerNevbar from "./hamburgerMenu"
 
 function nevbar() {
   const [navbar, changeNavbar] = useState(true);
@@ -38,7 +39,9 @@ function nevbar() {
         <li>
           <Autherntication />
         </li>
+
       </ul>
+      <HamburgerNevbar />
     </div>
   );
 }
