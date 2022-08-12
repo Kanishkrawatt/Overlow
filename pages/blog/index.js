@@ -5,6 +5,9 @@ import db from "../../db";
 
 function Blog(props) {
   const [blog, setblog] = useState(props.alldata);
+  useEffect(() => {
+    setblog(props.alldata)
+}, [props.alldata])
   return (
     <div>
       <div className={style.container}>
@@ -21,7 +24,7 @@ function Blog(props) {
     </div>
   );
 }
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   let data = await db.collection('entries').get()
   let alldata = data.docs.map(entry =>entry.data() )
   return {

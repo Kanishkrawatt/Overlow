@@ -15,6 +15,7 @@
     "dashify": "^2.0.0",
     "firebase": "^9.8.4",
     "firebase-admin": "^11.0.1",
+    "fs": "^0.0.1-security",
     "mongodb": "^4.8.0",
     "next": "12.1.6",
     "react": "18.1.0",
