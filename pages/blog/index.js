@@ -24,7 +24,7 @@ function Blog(props) {
     </div>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let data = await db.collection('entries').get()
   let alldata = data.docs.map(entry =>entry.data() )
   return {
