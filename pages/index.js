@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
-import * as fs from "fs";
 import Foot from "../components/Foot";
 import BlogFrame from "../components/blogFrame";
+import db from "../db";
 function Home(props) {
-  const [blog, setblog] = useState(props.array.slice(-3, props.array.length));
+  const [blog, setblog] = useState(props.Alldata.slice(-3, props.Alldata.length));
   return (
 
     <div className={styles.container}>
@@ -22,7 +22,6 @@ function Home(props) {
             className={styles.banner}
             src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
           />
-          {/* <img className={styles.banner} src="img/front.jpg" /> */}
         </div>
         </section>
         <section id="blogs">
@@ -44,19 +43,10 @@ function Home(props) {
   );
 }
 export async function getStaticProps(context) {
-  let data = await fs.promises.readdir("blogpost");
-  let array = [];
-  for (let i = 0; i < data.length; i++) {
-    let item = data[i];
-    let file = await fs.promises.readFile("blogpost/" + item, "utf-8");
-    array.push(JSON.parse(file));
-  }
-  // res.status(200).json(array);
-
-  // let fetchreq = await fetch("http://localhost:3000/api/post")
-  // let data = await fetchreq.json();
-  return {
-    props: { array }, // will be passed to the page component as props
+  let data = await db.collection("entries").get()
+  let Alldata = data.docs.map(entry=>entry.data())
+  return{
+    props: { Alldata }, // will be passed to the page component as props
   };
 }
 

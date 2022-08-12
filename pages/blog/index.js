@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import style from "../styles/blog.module.css";
-import BlogFrame from "../components/blogFrame";
-import * as fs from "fs";
-import Image from "next/image";
+import style from "../../styles/blog.module.css";
+import BlogFrame from "../../components/blogFrame";
+import db from "../../db";
 
 function Blog(props) {
-  const [blog, setblog] = useState(props.array);
+  const [blog, setblog] = useState(props.alldata);
   return (
     <div>
       <div className={style.container}>
@@ -23,19 +22,10 @@ function Blog(props) {
   );
 }
 export async function getStaticProps(context) {
-  let data = await fs.promises.readdir("blogpost");
-  let array = [];
-  for (let i = 0; i < data.length; i++) {
-    let item = data[i];
-    let file = await fs.promises.readFile("blogpost/" + item, "utf-8");
-    array.push(JSON.parse(file));
-  }
-  // res.status(200).json(array);
-
-  // let fetchreq = await fetch("http://localhost:3000/api/post")
-  // let data = await fetchreq.json();
+  let data = await db.collection('entries').get()
+  let alldata = data.docs.map(entry =>entry.data() )
   return {
-    props: { array }, // will be passed to the page component as props
+    props: { alldata }, // will be passed to the page component as props
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {user} from "../firebase/Signin"
+import axios from 'axios';
 
 function contact() {
   
@@ -10,20 +10,9 @@ function contact() {
 
   function submitfunc(e){
       e.preventDefault();
-      let data = {FirstName,LastName,Email,Message};
-      let lurl = 'http://localhost:3000/api/contact/';
-      let url = 'https://blogwebsite-five.vercel.app/api/contact/';
-      fetch('http://localhost:3000/api/contact/', {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      let slug = `${FirstName}-${LastName}-${Email}`
+      let data = {FirstName,LastName,Email,Message,slug};
+      axios.post('/api/contact',data);
       setFirstName("");
       setEmail("");
       setLastName("");
