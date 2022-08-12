@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+
+
 function admin() {
     const [BlogTitle, setBlogTitle] = useState("");
     const [BlogSlug, setBlogSlug] = useState("");
@@ -10,22 +13,10 @@ function admin() {
       e.preventDefault();
 
       const d = new Date();
-      let date = d.toDateString();
       let img = BlogImg;
-      let data = {"title":BlogTitle,"disc":BlogDisc,"slug":BlogSlug,"content":BlogContent,date,img};
-      let url = 'https://blogwebsite-five.vercel.app/api/createblog/';
-      let lurl = 'http://localhost:3000/api/createblog/' ;
-      fetch(lurl, {
-        method: 'POST', 
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      
+      let data = {"title":BlogTitle,"disc":BlogDisc,"slug":BlogSlug,"content":BlogContent,img};
+      axios.post("/api/blogEntry",data)
       setBlogTitle("");
       setBlogSlug("");
       setBlogContent("");

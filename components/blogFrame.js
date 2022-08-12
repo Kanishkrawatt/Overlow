@@ -12,11 +12,11 @@ function blogFrame(props) {
         <div className="p-5">
           <a href="#">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {item.title.toUpperCase()}
+              {item.title && item.title.toUpperCase()}
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {item.disc.substr(0, 100)}
+            {item.disc && item.disc.substr(0, 100)}
           </p>
           <Link href={`/blogp/${item.slug}`}>
             <a
@@ -45,22 +45,3 @@ function blogFrame(props) {
 }
 
 export default blogFrame;
-
-// <div key={item.slug} className="flex ">
-//               <Link  href={`/blogp/${item.slug}`}>
-//                 <div className="flex flex-col md:flex-row  bg-white shadow-lg">
-//                     <img className=" w-full h-%{} md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src={item.img} alt="Sunset in the mountains"/>
-//                   <div className="p-6 flex flex-col justify-start max-w-[200px] max-h-[300px]">
-//                     <h1 className="text-gray-900 text-xl font-medium mb-5">
-//                       {item.title.toUpperCase()}
-//                     </h1>
-
-//                     <p className="text-gray-700 mb-4">
-//                       {item.disc.substr(0,100)}
-//                     </p>
-
-//                     <p className="text-gray-600 text-sm italic bg-red-300 absolute -bottom-[300px]" >-{item.date}</p>
-//                   </div>
-//                 </div>
-//                 </Link>
-//               </div>
