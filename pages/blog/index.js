@@ -24,11 +24,12 @@ function Blog(props) {
     </div>
   );
 }
-export async function getServerSideProps() {
+export async function getStaticProps() {
   let data = await db.collection('entries').get()
   let alldata = data.docs.map(entry =>entry.data() )
   return {
     props: { alldata }, // will be passed to the page component as props
+    revalidate: 10,
   };
 }
 
