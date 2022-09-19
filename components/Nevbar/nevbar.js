@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { NevbarUl, Nevbarli, HameBig, Hamli,Logo } from "./nevbarComponents";
 import styles from "../../styles/hamburgerNevbar.module.css";
+import Autherntication from "../autherntication";
 
 function Nevbar() {
   let NevbarContent = [
@@ -27,6 +28,7 @@ function Nevbar() {
     window.addEventListener("scroll", navbarcolor);
   }
   return (
+    <>
     <NevbarUl
       style={
         !navbar
@@ -67,6 +69,8 @@ function Nevbar() {
         })}
       </HameBig>
     </NevbarUl>
+    <Autherntication/>
+    </>
   );
 }
 

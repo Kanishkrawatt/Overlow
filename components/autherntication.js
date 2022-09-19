@@ -34,7 +34,7 @@ function SignIn() {
   return (
     <>
       <button
-        className="block h-[40px] w-[40px] rounded-full bg-black text-white absolute right-[50px] top-3 border-black"
+        className="block h-[40px] w-[40px] z-20 fixed rounded-full bg-black text-white right-[50px] top-3 border-black"
         onClick={user ? signOut : signIn}
       >
         {user ? (
