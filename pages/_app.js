@@ -1,6 +1,7 @@
 import '../styles/globals.css'
-import Nevbar from "../components/nevbar"
+
 import Head from 'next/head'
+import Nevbar from '../components/Nevbar/nevbar';
 import Sidebar from "../components/sidebar";
 
 
@@ -11,9 +12,8 @@ function MyApp({ Component, pageProps }) {
   <Head>
         <title>Overlow</title>
   </Head>
-  <Nevbar/> 
   <Sidebar />
-  
+  <Nevbar />
   <Component {...pageProps} />
 
   </>

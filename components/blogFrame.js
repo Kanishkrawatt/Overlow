@@ -2,23 +2,28 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-// create the blogFrame component using styled components
 const BlogFrameDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
   height: 65vh;
+  min-width: 40vh;
+  width: 25%;
   border-radius: 3rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  width: 25%;
+  max-height: 65vh;
   color: black;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-family: "Rum Raisin", sans-serif;
   line-height: 1.2;
+  @media (max-width: 684px) {
+    width:80%;
+    min-width: 80%;
+  }
 `;
 
 const BlogImg = styled.img`
@@ -42,6 +47,7 @@ const StarRating = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  cursor: pointer;
 `;
 const Star = styled.div`
   font-size: 1.5rem;

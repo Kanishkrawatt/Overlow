@@ -59,11 +59,12 @@ export const Blogs = styled(flexCenter)`
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-family: "Rum Raisin", sans-serif;
-  line-height: 1.2;`
+  line-height: 1.2;
+  margin-bottom: 2rem;`
 
 export const BlogsTitle = styled(flexCenter)`
   height: auto;
-  margin-top: 2rem;
+  margin: 2rem 0rem;
   width: 100%;
   color: black;
   font-size: 2rem;
