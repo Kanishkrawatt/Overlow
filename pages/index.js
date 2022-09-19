@@ -76,12 +76,18 @@ export const BlogsTitle = styled(flexCenter)`
   font-family: "Rum Raisin", sans-serif;
   line-height: 1.2;`
 
+export const HomeTitle = styled(flexCenter)`
+  font-size: 4rem;
+  font-weight: 700;
+  color: black;
+  transform: translateY(-100px);
+  `
 function Home(props) {
   const [blog, setblog] = useState(props.Alldata.slice(-3, props.Alldata.length));
   return (
     <>
     <HomePage>
-      Overlow
+      <HomeTitle>Overlow</HomeTitle>
     </HomePage>
     <BlogsTitle>LATEST BLOGS</BlogsTitle>
     <Blogs>
