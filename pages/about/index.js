@@ -1,14 +1,14 @@
+import Image from "next/image";
 import React from "react";
 
 function about() {
   return (
     <div className="container mx-auto pt-[15vh] px-[1vh]  sm:px-[30vh]">
-      <h1 className="flex justify-center mb-5 text-4xl font-bold text-Dosis">Learn More About Us.</h1>
-      
-      <img  
-            className="my-6"
-              src="/img/front.jpg"
-          />
+      <h1 className="flex justify-center mb-5 text-4xl font-bold text-Dosis">
+        Learn More About Us.
+      </h1>
+      {/* <img src="/front.jpg" alt={"hi"} /> */}
+      <Image src="/front.jpg" alt="hi" layout="responsive" width={"100"} height={"50"}/>
       <p className="sm:px-[10vh] px-[3vh] text-xl text-Dosis tracking-wider">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
         blanditiis omnis qui harum atque quod delectus et in, ullam dicta

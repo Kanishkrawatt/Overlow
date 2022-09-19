@@ -1,46 +1,90 @@
 import React from "react";
 import Link from "next/link";
+import styled from "styled-components";
+
+// create the blogFrame component using styled components
+const BlogFrameDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f2f2;
+  height: 65vh;
+  border-radius: 3rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 25%;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-family: "Rum Raisin", sans-serif;
+  line-height: 1.2;
+`;
+
+const BlogImg = styled.img`
+  height: 75%;
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  &:hover {
+    opacity: 0.3;
+  }
+`;
+const BlogTitle = styled.h1`
+  font-size: 1.25rem;
+  padding: 2rem 2rem 1rem;
+  cursor: pointer;
+`;
+
+const StarRating = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+const Star = styled.div`
+  font-size: 1.5rem;
+  color: #ffd700;
+`;
+const EmptyStar = styled.div`
+  font-size: 1.5rem;
+  color: #d3d3d3;
+  &:hover {
+    color: #ffd700;
+  }
+`;
+const StarRatings = ({ rating }) => {
+  const stars = [];
+  rating = rating > 5 ? 5 : rating;
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      stars.push(<Star>★</Star>);
+    } else {
+      stars.push(<EmptyStar>☆</EmptyStar>);
+    }
+  }
+  return <StarRating>{stars}</StarRating>;
+};
+
+const BlogDate = styled.p`
+  font-size: 0.75rem;
+  padding: 0 2rem 0rem;
+`;
+
+
 
 function blogFrame(props) {
   let item = props.Item;
   return (
-    <div key={item.slug} className="flex ">
-      <div className="w-[300px] md:min-w-[400px] max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
-        <a href="#">
-          <img className="rounded-t-lg" src={item.img} alt="" />
-        </a>
-        <div className="p-5">
-          <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {item.title && item.title.toUpperCase()}
-            </h5>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {item.disc && item.disc.substr(0, 100)}
-          </p>
-          <Link href={`/blogp/${item.slug}`}>
-            <a
-              href="#"
-              className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Read more
-              <svg
-                className="ml-2 -mr-1 w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </Link>
-        </div>
-      </div>
-    </div>
+    <BlogFrameDiv>
+      <BlogImg src={item.img} alt={item.title} />
+      <BlogTitle>
+        <Link href={`/blog/${item.id}`}>{item.title}</Link>
+        <BlogDate>{"12 oct"}</BlogDate>
+      </BlogTitle>
+      <StarRatings rating={item.rating} />
+    </BlogFrameDiv>
   );
 }
 
