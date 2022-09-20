@@ -11,7 +11,7 @@ export const NevbarUl = styled.ul`
   margin: 0px;
   justify-content: center;
   cursor: pointer;
-  z-index: 3;
+  z-index: 4;
 `;
 export const Nevbarli = styled.li`
   list-style: none;

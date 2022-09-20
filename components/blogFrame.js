@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
 
 const BlogFrameDiv = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const BlogFrameDiv = styled.div`
   font-family: "Rum Raisin", sans-serif;
   line-height: 1.2;
   @media (max-width: 684px) {
-    width:80%;
+    width: 80%;
     min-width: 80%;
   }
 `;
@@ -29,12 +30,17 @@ const BlogFrameDiv = styled.div`
 const BlogImg = styled.img`
   height: 75%;
   width: 100%;
+  z-index: 3;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   object-fit: cover;
+  /*  Add Data on hover */
   &:hover {
-    opacity: 0.3;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: blur(4px);
   }
+  
 `;
 const BlogTitle = styled.h1`
   font-size: 1.25rem;
@@ -60,6 +66,22 @@ const EmptyStar = styled.div`
     color: #ffd700;
   }
 `;
+const BlogInfo = styled.div`
+  display: flex;
+  position: absolute;
+  height: 49vh;
+  min-width: 40vh;
+  width: 22%;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
+  padding: 0 2rem 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  cursor: pointer;
+`;
+
 const StarRatings = ({ rating }) => {
   const stars = [];
   rating = rating > 5 ? 5 : rating;
@@ -78,15 +100,14 @@ const BlogDate = styled.p`
   padding: 0 2rem 0rem;
 `;
 
-
-
 function blogFrame(props) {
   let item = props.Item;
   return (
     <BlogFrameDiv>
-      <BlogImg src={item.img} alt={item.title} />
+      <BlogInfo>{item.content}</BlogInfo>
+      <BlogImg src={item.img} alt={item.title} placeholder="blur"/>
       <BlogTitle>
-        <Link href={`/blog/${item.id}`}>{item.title}</Link>
+        <Link href={`/blogp/${item.id}`}>{item.title}</Link>
         <BlogDate>{"12 oct"}</BlogDate>
       </BlogTitle>
       <StarRatings rating={item.rating} />
