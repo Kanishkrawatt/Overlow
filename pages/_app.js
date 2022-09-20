@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import Head from 'next/head'
 import Nevbar from '../components/Nevbar/nevbar';
 import Sidebar from "../components/sidebar";
-
+import Foot from '../components/Foot';
 
 
 
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   <Sidebar />
   <Nevbar />
   <Component {...pageProps} />
-
+  <Foot />
   </>
   }
 

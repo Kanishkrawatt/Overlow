@@ -16,6 +16,8 @@ export const HomePage = styled(flexCenter)`
   font-size: 4rem;
   font-weight: 700;
   text-align: center;
+  font-variant: small-caps;
+  font-smooth: inherit;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-family: "Rum Raisin", sans-serif;
@@ -64,7 +66,9 @@ export const Blogs = styled(flexCenter)`
 
 export const BlogsTitle = styled(flexCenter)`
   height: auto;
-  margin: 2rem 0rem;
+  background-color: #f2f2f2;
+  padding: 2rem 0; 
+  margin: 0rem 0rem 2rem;
   width: 100%;
   color: black;
   font-size: 2rem;
@@ -73,6 +77,8 @@ export const BlogsTitle = styled(flexCenter)`
   justify-content: space-evenly;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
+  font-variant: small-caps;
+  font-smooth: inherit;
   font-family: "Rum Raisin", sans-serif;
   line-height: 1.2;`
 
@@ -101,7 +107,6 @@ function Home(props) {
       return <BlogFrame key={item.id} Item={item} />;
     })}
     </Blogs>
-    <Foot />
     </>
   );
 }
