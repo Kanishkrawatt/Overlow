@@ -103,8 +103,8 @@ function Home(props) {
     </Blogs>
     <BlogsTitle>POPULAR BLOGS</BlogsTitle>
     <Blogs>
-    {blog.map((item) => {
-      return <BlogFrame key={item.id} Item={item} />;
+    {blog.map((item,index) => {
+      return <BlogFrame key={item.index} Item={item} />;
     })}
     </Blogs>
     </>
