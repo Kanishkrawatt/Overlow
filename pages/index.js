@@ -66,12 +66,14 @@ export const Blogs = styled(flexCenter)`
 
 export const BlogsTitle = styled(flexCenter)`
   height: auto;
-  background-color: #f2f2f2;
   padding: 2rem 0; 
-  margin: 0rem 0rem 2rem;
-  width: 100%;
+  margin: 2rem;
+  width: auto;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  border-radius: 1rem;
   color: black;
   font-size: 2rem;
+  flex-direction: column;
   gap: 2rem;
   text-align: center;
   justify-content: space-evenly;
@@ -95,18 +97,21 @@ function Home(props) {
     <HomePage>
       <HomeTitle>Overlow</HomeTitle>
     </HomePage>
-    <BlogsTitle>LATEST BLOGS</BlogsTitle>
-    <Blogs>
-    {blog.map((item) => {
-      return <BlogFrame key={item.id} Item={item} />;
-    })}
-    </Blogs>
-    <BlogsTitle>POPULAR BLOGS</BlogsTitle>
+    <BlogsTitle>LATEST BLOGS
     <Blogs>
     {blog.map((item,index) => {
-      return <BlogFrame key={item.index} Item={item} />;
+      return <BlogFrame key={index} Item={item} />;
     })}
     </Blogs>
+    </BlogsTitle>
+    <BlogsTitle>POPULAR BLOGS
+    <Blogs>
+    
+    {blog.map((item,index) => {
+      return <BlogFrame key={index} Item={item} />;
+    })}
+    </Blogs>
+    </BlogsTitle>
     </>
   );
 }

@@ -65,9 +65,9 @@ function Blog(props) {
       <BlogDiv>
         <BlogTitle>Blogs</BlogTitle>
         <BlogData>
-          {blog.map((item) => {
+          {blog.map((item,index) => {
             return (
-              <BlogFrame key={item.slug} Item={item} />
+              <BlogFrame key={index} Item={item} />
               
             );
           })}
