@@ -1,69 +1,49 @@
-// import React, { useState } from 'react'
-// import style from '../../styles/each.module.css'
-// import db from '../../db';
+import React, { useState } from 'react'
+import style from '../../styles/each.module.css'
+import db from '../../db';
 
 
-// function Slug(props) {
-//   function createMarkup(d) {
-//     return {__html: d};
-//   }
+function Slug(props) {
+  function createMarkup(d) {
+    return {__html: d};
+  }
   
-//     const [data, setdata] = useState(props.myBlog)
-//     // console.log(data);
-//     return (
+    const [data]=props.myBlog
+    return (
   
-//       <div className={style.div1}>
-//       <h1 className={style.title}>{data && data.title.toUpperCase()}</h1>
+      <div className={style.div1}>
+      <h1 className={style.title}>{data && data.title}</h1>
       
-//       {data &&<div className={style.disc} dangerouslySetInnerHTML={createMarkup(data.content)} />}
-//       <p className={style.date}>{data && data.date}</p>
-//       </div>
-//     )
-// }
-// export async function getStaticPaths() {
-//   const Paths = [];
-//   // let file = await fs.promises.readdir("blogpost");
-//   const doc = await db.collection("entries").get();
-//   console.log(doc);
-//   doc.forEach((content)=>{
-//     let obj = {params:{content}}
-//     Paths.push(obj)
-//   })
-
-//   // for(let i = 0;i<file.length;i++){
-//   //   let item = file[i];
-//   //   let slug = item.slice(0,-5);
-//   //   let obj = {params:{slug}}
-//   //   files.push(obj);
-//   // }
-  
-//   return {
+      {data &&<div className={style.disc} dangerouslySetInnerHTML={createMarkup(data.content)} />}
+      <p className={style.date}>{data && data.date}</p>
+      </div>
+    )
+}
+export async function getStaticPaths() {
+  let data = await db.collection('entries').get()
+  let alldata = data.docs.map(entry =>entry.data() )
+  const Paths =alldata.map((content)=>{
+    return{
+    params:{id:content.id.toString()},
+  }
+  });
+  return {
     
-//       paths: Paths,
-//       fallback: true // false or 'blocking'
-//   };
-// }
+      paths: Paths,
+      fallback: true 
+  };
+}
+export async function getStaticProps(context) {
+  const {id} = context.params;
+  const data = await db.collection("entries").where("id", "==", id).get();
+  let Alldata = data.docs.map((entry) => entry.data());
 
-// export async function getStaticProps(context) {
-//   const { id } = context.params;
-//   const doc = await db.collection('entries').doc(id).get();
-//   let Alldata = doc.data()
 
-
-//   return {
-//       props: { myBlog:JSON.parse(Alldata)}, // will be passed to the page component as props
-//   }
-// }
-
-// export default Slug
-
-import React from 'react'
-
-function Data() {
-  return (
-    <div>Data</div>
-  )
+  return {
+      props: { myBlog:Alldata},
+      revalidate: 10,
+  }
 }
 
-export default Data
 
+export default Slug

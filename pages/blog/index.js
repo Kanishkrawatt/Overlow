@@ -79,23 +79,9 @@ export async function getStaticProps() {
   let data = await db.collection('entries').get()
   let alldata = data.docs.map(entry =>entry.data() )
   return {
-    props: { alldata }, // will be passed to the page component as props
+    props: { alldata }, 
     revalidate: 10,
   };
 }
 
 export default Blog;
-
-{
-  /* <div key={item.title}>
-                <Link  href={`/blogp/${item.slug}`}>
-                <div >
-                <h3 >{item.title}</h3>
-                <p>{item.disc.substr(0,100)}...</p>
-  
-}
-<img
-                    className=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
-                    src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-                    alt=""
-/> */}
