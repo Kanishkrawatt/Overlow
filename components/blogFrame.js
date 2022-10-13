@@ -27,7 +27,7 @@ const BlogFrameDiv = styled.div`
   }
 `;
 
-const BlogImg = styled.img`
+const BlogImg = styled(Image)`
   height: 75%;
   width: 100%;
   z-index: 3;
@@ -100,12 +100,31 @@ const BlogDate = styled.p`
   padding: 0 2rem 0rem;
 `;
 
+const BlogImgDiv = styled.div`
+  height: 75%;
+  position: relative;
+  width: 100%;
+  z-index: 3;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  /*  Add Data on hover */
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+  
+`;
+
 function blogFrame(props) {
   let item = props.Item;
   return (
     <BlogFrameDiv>
       <BlogInfo>{item.content}</BlogInfo>
-      <BlogImg src={item.img} alt={item.title} placeholder="blur"/>
+      <BlogImgDiv>
+        <BlogImg src={item.img} alt={item.title} placeholder="blur" layout="fill" blurDataURL={item.img}/>
+      </BlogImgDiv>
       <BlogTitle>
         <Link href={`/blogp/${item.id}`}>{item.title}</Link>
         <BlogDate>{"12 oct"}</BlogDate>
