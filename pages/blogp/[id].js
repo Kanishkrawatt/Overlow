@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   return {
     
       paths: Paths,
-      fallback: true 
+      fallback: false 
   };
 }
 export async function getStaticProps(context) {
