@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { NevbarUl, Nevbarli, HameBig, Hamli,Logo } from "./nevbarComponents";
+import { NevbarUl, Nevbarli, HameBig, Hamli, Logo } from "./nevbarComponents";
 import styles from "../../styles/hamburgerNevbar.module.css";
 import Autherntication from "../autherntication";
 
@@ -29,47 +29,47 @@ function Nevbar() {
   }
   return (
     <>
-    <NevbarUl
-      style={
-        !navbar
-          ? { backgroundColor: "white" }
-          : { backgroundColor: "transparent" }
-      }
-    >
-      <Nevbarli className="absolute left-[10px] md:left-[10%] lg:left-[20%]">
-        {" "}
-        <Logo>O</Logo> Overlow
-      </Nevbarli>
-      {NevbarContent.map((content, index) => {
-        return (
-          <Link href={content.Link} key={index}>
-            <Nevbarli>{content.Name}</Nevbarli>
-          </Link>
-        );
-      })}
-      <div
-        id={`${styles.navicon1}`}
-        className={`${Ham && styles.open}`}
-        onClick={() => {
-          setHam(!Ham);
-        }}
+      <NevbarUl
+        style={
+          !navbar
+            ? { backgroundColor: "white" }
+            : { backgroundColor: "transparent" }
+        }
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      
-      <HameBig style={toggleHeight}>
+        <Nevbarli className="absolute left-[10px] md:left-[10%] lg:left-[20%]">
+          {" "}
+          <Logo>O</Logo> Overlow
+        </Nevbarli>
         {NevbarContent.map((content, index) => {
           return (
             <Link href={content.Link} key={index}>
-              <Hamli>{content.Name}</Hamli>
+              <Nevbarli>{content.Name}</Nevbarli>
             </Link>
           );
         })}
-      </HameBig>
-    </NevbarUl>
-    <Autherntication/>
+        <div
+          id={`${styles.navicon1}`}
+          className={`${Ham && styles.open}`}
+          onClick={() => {
+            setHam(!Ham);
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <HameBig style={toggleHeight}>
+          {NevbarContent.map((content, index) => {
+            return (
+              <Hamli key={index} onClick={()=>setHam(!Ham)}>
+                <Link href={content.Link}>{content.Name}</Link>
+              </Hamli>
+            );
+          })}
+        </HameBig>
+      </NevbarUl>
+      <Autherntication />
     </>
   );
 }
