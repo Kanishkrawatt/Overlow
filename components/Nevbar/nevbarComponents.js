@@ -12,6 +12,7 @@ export const NevbarUl = styled.ul`
   justify-content: center;
   cursor: pointer;
   z-index: 4;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const Nevbarli = styled.li`
   list-style: none;
