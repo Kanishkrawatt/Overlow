@@ -1,22 +1,22 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-import Head from 'next/head'
-import Nevbar from '../components/Nevbar/nevbar';
+import Head from "next/head";
+import Nevbar from "../components/Nevbar/nevbar";
 import Sidebar from "../components/sidebar";
-import Foot from '../components/Foot';
-
-
+import Foot from "../components/Foot";
 
 function MyApp({ Component, pageProps }) {
-  return <>
-  <Head>
+  return (
+    <>
+      <Head>
         <title>Overlow</title>
-  </Head>
-  <Sidebar />
-  <Nevbar />
-  <Component {...pageProps} />
-  <Foot />
-  </>
-  }
+      </Head>
+      <Sidebar />
+      <Nevbar />
+      <Component {...pageProps} />
+      <Foot />
+    </>
+  );
+}
 
-export default MyApp
+export default MyApp;

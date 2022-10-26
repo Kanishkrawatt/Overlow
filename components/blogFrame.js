@@ -40,7 +40,6 @@ const BlogImg = styled(Image)`
     opacity: 0.5;
     filter: blur(4px);
   }
-  
 `;
 const BlogTitle = styled.h1`
   font-size: 1.25rem;
@@ -114,7 +113,6 @@ const BlogImgDiv = styled.div`
     opacity: 0.5;
     filter: blur(4px);
   }
-  
 `;
 
 function blogFrame(props) {
@@ -123,7 +121,13 @@ function blogFrame(props) {
     <BlogFrameDiv>
       <BlogInfo>{item.content}</BlogInfo>
       <BlogImgDiv>
-        <BlogImg src={item.img} alt={item.title} placeholder="blur" layout="fill" blurDataURL={item.img}/>
+        <BlogImg
+          src={item.img}
+          alt={item.title}
+          placeholder="blur"
+          layout="fill"
+          blurDataURL={item.img}
+        />
       </BlogImgDiv>
       <BlogTitle>
         <Link href={`/blogp/${item.id}`}>{item.title}</Link>

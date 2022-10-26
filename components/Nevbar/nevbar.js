@@ -62,7 +62,7 @@ function Nevbar() {
         <HameBig style={toggleHeight}>
           {NevbarContent.map((content, index) => {
             return (
-              <Hamli key={index} onClick={()=>setHam(!Ham)}>
+              <Hamli key={index} onClick={() => setHam(!Ham)}>
                 <Link href={content.Link}>{content.Name}</Link>
               </Hamli>
             );

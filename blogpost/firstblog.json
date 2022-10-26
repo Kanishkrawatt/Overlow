@@ -1,1 +1,8 @@
-{"title":"First Blog","disc":"This is my first blog.","slug":"firstblog","content":"<img src=\" https://images.unsplash.com/photo-1655338535123-1a552c71cb03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80\"\n<h1>Hey</h1>\n<p>This is my first blog post</p> ","date":"Thu Jun 16 2022","img":"https://images.unsplash.com/photo-1655219282830-7ecd31afac68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"}
+{
+  "title": "First Blog",
+  "disc": "This is my first blog.",
+  "slug": "firstblog",
+  "content": "<img src=\" https://images.unsplash.com/photo-1655338535123-1a552c71cb03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80\"\n<h1>Hey</h1>\n<p>This is my first blog post</p> ",
+  "date": "Thu Jun 16 2022",
+  "img": "https://images.unsplash.com/photo-1655219282830-7ecd31afac68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+}

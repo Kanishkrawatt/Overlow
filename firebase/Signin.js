@@ -6,41 +6,34 @@ import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import {firebaseconfig} from "./firebaseconfig";
+import { firebaseconfig } from "./firebaseconfig";
 firebase.initializeApp(firebaseconfig);
 
 const auth = firebase.auth();
 // const firestore = firebase.firestore();
-const user = auth.user
+const user = auth.user;
 const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-
-  };
-const signOutWithGoogle=()=>{
-  auth.signOut()
-}
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+};
+const signOutWithGoogle = () => {
+  auth.signOut();
+};
 function SignIn() {
-    const [user] = useAuthState(auth);
-    
-    let userData={};
-    if (user !== null) {
-        userData ={
-        uid :user.uid,
-        displayName : user.displayName,
-        email : user.email,
-        photoURL : user.photoURL,
-        emailVerified :user.emailVerified
+  const [user] = useAuthState(auth);
 
-    }
-    }
-    return (
-      <>
-        {!user&&signInWithGoogle()}
-      </>
-    );
+  let userData = {};
+  if (user !== null) {
+    userData = {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
+    };
   }
-
+  return <>{!user && signInWithGoogle()}</>;
+}
 
 export default SignIn;
-export {signInWithGoogle,signOutWithGoogle,user}
+export { signInWithGoogle, signOutWithGoogle, user };
