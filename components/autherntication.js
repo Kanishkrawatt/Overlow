@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -6,7 +7,10 @@ import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { signInWithGoogle, signOutWithGoogle } from "../firebase/firebasefunction";
+import {
+  signInWithGoogle,
+  signOutWithGoogle,
+} from "../firebase/firebasefunction";
 import { firebaseconfig } from "../firebase/firebaseconfig";
 firebase.initializeApp(firebaseconfig);
 
@@ -18,8 +22,56 @@ function autherntication() {
 
   return <SignIn />;
 }
+export const DropDownMenu = styled.div`
+  height: 20vh;
+  width: 10vw;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  top: 0.5rem;
+  gap: 0.5rem;
+  right: 1rem;
+  border-radius: 2rem;
+  padding-bottom: 2rem;
+`;
+export const RoundButton = styled.div`
+  height: 2.5rem;
+  width: 2.5rem;
+  z-index: 20;
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  top: 0.75rem;
+  right: 1.25rem;
 
+  cursor: pointer;
+  &::selection {
+    background-color: transparent;
+  }
+`;
+export const Menus = styled.div`
+  border: 1px solid #c2c2c2;
+  padding: 1.2rem 2rem;
+  width: 80%;
+  height: 2rem;
+  display: flex;
+  cursor: pointer;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+`;
 function SignIn() {
+  const [menu, setMenu] = useState(false);
   const [user] = useAuthState(auth);
   const signIn = () => {
     signInWithGoogle();
@@ -31,18 +83,51 @@ function SignIn() {
   if (user !== null) {
     photoURL = user.photoURL;
   }
+  const ButtonClickEffect = {
+    backgroundColor: "#f2f2f2",
+    color: "black",
+    border: "0px",
+    height: "2.5rem",
+    width: "2.5rem",
+    margin: "5px",
+  };
+
   return (
     <>
-      <button
+      {/* <button
         className="hidden h-[40px] w-[40px] z-20 fixed rounded-full bg-black text-white right-[50px] top-3 border-black sm:block"
-        onClick={user ? signOut : signIn}
+        onClick={()=>{setMenu(m=>!m)}}
+        <img className="rounded-full " src={photoURL} alt="img" />
+      > */}
+
+      {/* </button> */}
+      <RoundButton
+        style={menu ? ButtonClickEffect : {}}
+        onClick={() => {
+          setMenu((m) => !m);
+        }}
       >
-        {user ? (
+        {menu ? (
+          "X"
+        ) : user ? (
           <img className="rounded-full " src={photoURL} alt="img" />
         ) : (
           "N/A"
         )}
-      </button>
+      </RoundButton>
+      {menu && (
+        <DropDownMenu>
+          <Menus>Profile</Menus>
+          <Menus
+            onClick={() => {
+              user ? signOut() : signIn();
+              setMenu((m) => !m);
+            }}
+          >
+            {user ? "SignOut" : "SignIn"}
+          </Menus>
+        </DropDownMenu>
+      )}
     </>
   );
 }

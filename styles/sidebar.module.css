@@ -1,7 +1,7 @@
 .sidebar{
     position: fixed;
   top: 30vh;
-  right: 30px;
+  left: 30px;
   display: block;
   height: 15rem;
   width: 50px;
@@ -41,10 +41,6 @@
     right: 15px;
 } */
 
-.sidebar:hover{
-    top: 34vh;
-    transition: top 1s;
-}
 .bi{
     padding-top: 15px;
 }
