@@ -24,6 +24,7 @@ function Slug(props) {
   return (
     <BlogDiv>
       <Heading>{data.title}</Heading>
+      <p>{data.content}</p>
     </BlogDiv>
   );
 }
@@ -32,7 +33,7 @@ export async function getStaticPaths() {
   let alldata = data.docs.map((entry) => entry.data());
   const Paths = alldata.map((content) => {
     return {
-      params: { id: content.id.toString() },
+      params: { id: content.fid.toString() },
     };
   });
   return {
@@ -42,7 +43,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps(context) {
   const { id } = context.params;
-  const data = await db.collection("entries").where("id", "==", id).get();
+  const data = await db.collection("entries").where("fid", "==", id).get();
   let Alldata = data.docs.map((entry) => entry.data());
 
   return {

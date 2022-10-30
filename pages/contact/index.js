@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useId, useRef } from "react";
 import axios from "axios";
 
 function contact() {
@@ -6,11 +6,13 @@ function contact() {
   const LastName = useRef();
   const Email = useRef();
   const Message = useRef();
+  const id = useId();
 
   function submitfunc(e) {
     e.preventDefault();
     let slug = `${FirstName.current.value}-${LastName.current.value}-${Email.current.value}`;
     let data = {
+      id,
       FirstName: FirstName.current.value,
       LastName: LastName.current.value,
       Email: Email.current.value,
