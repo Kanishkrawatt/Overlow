@@ -6,7 +6,7 @@ import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { signInWithGoogle, signOutWithGoogle } from "../firebase/Signin";
+import { signInWithGoogle, signOutWithGoogle } from "../firebase/firebasefunction";
 import { firebaseconfig } from "../firebase/firebaseconfig";
 firebase.initializeApp(firebaseconfig);
 
