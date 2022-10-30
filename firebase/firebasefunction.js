@@ -21,7 +21,6 @@ const signOutWithGoogle = () => {
 };
 function SignIn() {
   const [user] = useAuthState(auth);
-
   let userData = {};
   if (user !== null) {
     userData = {
@@ -35,5 +34,27 @@ function SignIn() {
   return <>{!user && signInWithGoogle()}</>;
 }
 
+export const CheckUser = () => {
+  const [user] = useAuthState(auth);
+  if (user !== null) {
+    return 1;
+  }
+  return 0;
+};
+export const UserInfo = () => {
+  const [user] = useAuthState(auth);
+  let userData = {};
+  if (user !== null) {
+    userData = {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
+    };
+    return userData;
+  }
+  return null;
+};
 export default SignIn;
 export { signInWithGoogle, signOutWithGoogle, user };
