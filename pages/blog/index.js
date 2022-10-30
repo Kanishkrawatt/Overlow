@@ -25,6 +25,7 @@ const BlogTitle = styled.h1`
 const BlogData = styled.div`
   display: flex;
   flex-wrap: wrap;
+  /* flex-direction: column; */
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
