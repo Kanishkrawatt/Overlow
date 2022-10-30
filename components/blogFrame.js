@@ -1,15 +1,46 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-
+import { Carousel } from "react-responsive-carousel";
+const BlogTitleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`;
+const Profile = styled.div`
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  border-radius: 5rem;
+  background-color: #303030;
+  color: #fcfcfc;
+`;
+// white: {
+//     100: "#fcfcfc",
+//     200: "#fafafa",
+//     300: "#f7f7f7",
+//     400: "#f5f5f5",
+//     500: "#f2f2f2",
+//     600: "#c2c2c2",
+//     700: "#919191",
+//     800: "#616161",
+//     900: "#303030"
+// }
 const BlogFrameDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
   height: 65vh;
-  min-width: 40vh;
+  min-width: 40vw;
   width: 25%;
   border-radius: 3rem;
   border-top-left-radius: 1rem;
@@ -21,9 +52,9 @@ const BlogFrameDiv = styled.div`
   letter-spacing: 0.2rem;
   font-family: "Rum Raisin", sans-serif;
   line-height: 1.2;
-  @media (max-width: 684px) {
-    width: 80%;
-    min-width: 80%;
+  @media (max-width: 984px) {
+    width: 70vw;
+    min-width: 70vw;
   }
 `;
 
@@ -117,23 +148,26 @@ const BlogImgDiv = styled.div`
 
 function blogFrame(props) {
   let item = props.Item;
+  let months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
   return (
     <BlogFrameDiv>
-      <BlogInfo>{item.content}</BlogInfo>
+      <BlogInfo>{item.describe}</BlogInfo>
       <BlogImgDiv>
         <BlogImg
-          src={item.img}
+          src={item.image}
           alt={item.title}
           placeholder="blur"
           layout="fill"
-          blurDataURL={item.img}
+          blurDataURL={item.image}
         />
       </BlogImgDiv>
-      <BlogTitle>
-        <Link href={`/blogp/${item.id}`}>{item.title}</Link>
-        <BlogDate>{"12 oct"}</BlogDate>
-      </BlogTitle>
-      <StarRatings rating={item.rating} />
+      <BlogTitleDiv>
+        <Profile>K</Profile>
+        <BlogTitle>
+          <Link href={`/blogp/${item.fid}`}>{item.title}</Link>
+          <BlogDate>{item.date.substring(8,10)} {months[item.date.substring(5,7)]}</BlogDate>
+        </BlogTitle>
+      </BlogTitleDiv>
     </BlogFrameDiv>
   );
 }
