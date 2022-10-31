@@ -3,7 +3,7 @@ import Foot from "../components/Footer/Foot";
 import BlogFrame from "../components/BlogFrame/blogFrame";
 import db from "../db";
 import styled from "styled-components";
-import { SButton } from "../components/autherntication";
+import { SButton } from "../components/Authentication/authentication";
 import Link from "next/link";
 
 
