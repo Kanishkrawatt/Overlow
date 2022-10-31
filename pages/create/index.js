@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useRef, useMemo,useState } from "react";
 import axios from "axios";
 import { CheckUser, UserInfo } from "../../firebase/firebasefunction";
+import SigninPage from "../../components/SignInPage";
 
 function admin() {
   const Title = useRef();
@@ -129,7 +130,7 @@ function admin() {
           </div>
         </form>
       ) : (
-        <p>SignIn</p>
+        <SigninPage />
       )}
     </>
   );

@@ -44,7 +44,7 @@ export const RoundButton = styled.div`
     display: none;
 }
 `;  
-export const Menus = styled.div`
+export const SButton = styled.div`
   border: 1px solid #c2c2c2;
   padding: 1.2rem 2rem;
   width: 80%;
@@ -97,15 +97,15 @@ function autherntication() {
       </RoundButton>
       {menu && (
         <DropDownMenu>
-          <Menus>Profile</Menus>
-          <Menus
+          <SButton>Profile</SButton>
+          <SButton
             onClick={() => {
               user ? signOut() : signIn();
               setMenu((m) => !m);
             }}
           >
             {user ? "SignOut" : "SignIn"}
-          </Menus>
+          </SButton>
         </DropDownMenu>
       )}
     </>
