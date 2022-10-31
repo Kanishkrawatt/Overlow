@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import style from "../../styles/blog.module.css";
-import BlogFrame from "../../components/blogFrame";
+import BlogFrame from "../../components/BlogFrame/blogFrame";
 import db from "../../db";
 
 import styled from "styled-components";

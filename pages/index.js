@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Foot from "../components/Foot";
-import BlogFrame from "../components/blogFrame";
+import Foot from "../components/Footer/Foot";
+import BlogFrame from "../components/BlogFrame/blogFrame";
 import db from "../db";
 import styled from "styled-components";
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { NevbarUl, Nevbarli, HameBig, Hamli, Logo } from "./nevbarComponents";
 import styles from "../../styles/hamburgerNevbar.module.css";
-import Autherntication from "../autherntication";
+import Autherntication from "../Authentication/authentication";
 
 function Nevbar() {
   let NevbarContent = [

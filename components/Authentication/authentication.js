@@ -5,7 +5,7 @@ import {
   signInWithGoogle,
   signOutWithGoogle,
   UserInfo,
-} from "../firebase/firebasefunction";
+} from "../../firebase/firebasefunction";
 
 export const DropDownMenu = styled.div`
   height: 20vh;
