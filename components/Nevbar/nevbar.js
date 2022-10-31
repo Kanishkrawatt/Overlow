@@ -66,10 +66,12 @@ function Nevbar() {
                 <Link href={content.Link}>{content.Name}</Link>
               </Hamli>
             );
-          })}
+          })
+          }
         </HameBig>
       </NevbarUl>
       <Autherntication />
+      
     </>
   );
 }

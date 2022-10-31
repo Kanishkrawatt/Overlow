@@ -1,25 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-
-import { useAuthState } from "react-firebase-hooks/auth";
-
 import {
   signInWithGoogle,
   signOutWithGoogle,
+  UserInfo,
 } from "../firebase/firebasefunction";
-import { firebaseconfig } from "../firebase/firebaseconfig";
-firebase.initializeApp(firebaseconfig);
-
-const auth = firebase.auth();
-// const firestore = firebase.firestore();
 
 function autherntication() {
-  //   const [user] = useAuthState(auth);
-
   return <SignIn />;
 }
 export const DropDownMenu = styled.div`
@@ -51,12 +39,14 @@ export const RoundButton = styled.div`
   color: white;
   top: 0.75rem;
   right: 1.25rem;
-
   cursor: pointer;
   &::selection {
     background-color: transparent;
   }
-`;
+  @media (max-width: 600px){
+    display: none;
+}
+`;  
 export const Menus = styled.div`
   border: 1px solid #c2c2c2;
   padding: 1.2rem 2rem;
@@ -72,7 +62,7 @@ export const Menus = styled.div`
 `;
 function SignIn() {
   const [menu, setMenu] = useState(false);
-  const [user] = useAuthState(auth);
+  const user = UserInfo();
   const signIn = () => {
     signInWithGoogle();
   };
@@ -94,13 +84,6 @@ function SignIn() {
 
   return (
     <>
-      {/* <button
-        className="hidden h-[40px] w-[40px] z-20 fixed rounded-full bg-black text-white right-[50px] top-3 border-black sm:block"
-        onClick={()=>{setMenu(m=>!m)}}
-        <img className="rounded-full " src={photoURL} alt="img" />
-      > */}
-
-      {/* </button> */}
       <RoundButton
         style={menu ? ButtonClickEffect : {}}
         onClick={() => {
@@ -110,7 +93,7 @@ function SignIn() {
         {menu ? (
           "X"
         ) : user ? (
-          <img className="rounded-full " src={photoURL} alt="img" />
+          <img className="rounded-full " src={photoURL} alt="P" />
         ) : (
           "N/A"
         )}
