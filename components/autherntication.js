@@ -7,9 +7,6 @@ import {
   UserInfo,
 } from "../firebase/firebasefunction";
 
-function autherntication() {
-  return <SignIn />;
-}
 export const DropDownMenu = styled.div`
   height: 20vh;
   width: 10vw;
@@ -60,7 +57,7 @@ export const Menus = styled.div`
   align-items: center;
   border-radius: 1rem;
 `;
-function SignIn() {
+function autherntication() {
   const [menu, setMenu] = useState(false);
   const user = UserInfo();
   const signIn = () => {
