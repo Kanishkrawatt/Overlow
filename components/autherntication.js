@@ -15,7 +15,7 @@ export const DropDownMenu = styled.div`
   width: 10vw;
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: fixed;
   align-items: center;
   flex-direction: column;
   background-color: white;
