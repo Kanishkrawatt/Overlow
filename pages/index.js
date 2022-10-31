@@ -3,6 +3,9 @@ import Foot from "../components/Foot";
 import BlogFrame from "../components/blogFrame";
 import db from "../db";
 import styled from "styled-components";
+import { SButton } from "../components/autherntication";
+import Link from "next/link";
+
 
 export const flexCenter = styled.div`
   display: flex;
@@ -13,6 +16,7 @@ export const HomePage = styled(flexCenter)`
   height: 100vh;
   width: 100%;
   color: black;
+  flex-direction: column;
   font-size: 4rem;
   font-weight: 700;
   text-align: center;
@@ -100,6 +104,7 @@ function Home(props) {
     <>
       <HomePage>
         <HomeTitle>Overlow</HomeTitle>
+        <Link href="/create"><SButton style={{width:"11%",fontSize:"0.75rem",backgroundColor:"white",border:"1px solid black",transform:"translateY(-70px)"}}>Create Blog</SButton></Link>
       </HomePage>
       <BlogsTitle>
         LATEST BLOGS
