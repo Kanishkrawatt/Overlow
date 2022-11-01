@@ -36,10 +36,12 @@ function Nevbar() {
             : { backgroundColor: "transparent" }
         }
       >
-        <Nevbarli className="absolute left-[10px] md:left-[10%] lg:left-[20%]">
-          {" "}
-          <Logo>O</Logo> Overlow
-        </Nevbarli>
+        <Link href="/">
+          <Nevbarli className="absolute left-[10px] md:left-[10%] lg:left-[20%]">
+            {" "}
+            <Logo>O</Logo> Overlow
+          </Nevbarli>
+        </Link>
         {NevbarContent.map((content, index) => {
           return (
             <Link href={content.Link} key={index}>
@@ -66,12 +68,10 @@ function Nevbar() {
                 <Link href={content.Link}>{content.Name}</Link>
               </Hamli>
             );
-          })
-          }
+          })}
         </HameBig>
       </NevbarUl>
       <Autherntication />
-      
     </>
   );
 }
