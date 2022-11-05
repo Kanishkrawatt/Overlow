@@ -2,10 +2,10 @@ import { useState } from "react";
 import Foot from "../components/Footer/Foot";
 import BlogFrame from "../components/BlogFrame/blogFrame";
 import db from "../db";
+import Image from "next/image";
 import styled from "styled-components";
 import { SButton } from "../components/Authentication/authentication";
 import Link from "next/link";
-
 
 export const flexCenter = styled.div`
   display: flex;
@@ -54,9 +54,9 @@ export const HomePage = styled(flexCenter)`
 `;
 
 export const Blogs = styled(flexCenter)`
-  min-height: 80vh;
+  min-height: 50vh;
   height: auto;
-  width: 100%;
+  width: 90vw;
   color: black;
   gap: 2rem;
   text-align: center;
@@ -104,13 +104,25 @@ function Home(props) {
     <>
       <HomePage>
         <HomeTitle>Overlow</HomeTitle>
-        <Link href="/create"><SButton style={{width:"11%",fontSize:"0.75rem",backgroundColor:"white",border:"1px solid black",transform:"translateY(-70px)"}}>Create Blog</SButton></Link>
+        <Link href="/create">
+          <SButton
+            style={{
+              width: "11%",
+              fontSize: "0.75rem",
+              backgroundColor: "white",
+              border: "1px solid black",
+              transform: "translateY(-70px)",
+            }}
+          >
+            Create Blog
+          </SButton>
+        </Link>
       </HomePage>
       <BlogsTitle>
         LATEST BLOGS
         <Blogs>
           {blog.map((item, index) => {
-            return <BlogFrame key={index} Item={item} />;
+            return <BlogFrame key={index} Item={item} size={"m"} />;
           })}
         </Blogs>
       </BlogsTitle>
@@ -118,7 +130,7 @@ function Home(props) {
         POPULAR BLOGS
         <Blogs>
           {blog.map((item, index) => {
-            return <BlogFrame key={index} Item={item} />;
+            return <BlogFrame key={index} Item={item} size={"m"} />;
           })}
         </Blogs>
       </BlogsTitle>
