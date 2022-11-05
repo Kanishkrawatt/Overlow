@@ -39,8 +39,8 @@ const BlogFrameDiv = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
-  height: 65vh;
-  min-width: 40vw;
+  height: ${props=>props.height};
+  min-width:${props=>props.width};
   width: 25%;
   border-radius: 3rem;
   border-top-left-radius: 1rem;
@@ -55,6 +55,7 @@ const BlogFrameDiv = styled.div`
   @media (max-width: 984px) {
     width: 70vw;
     min-width: 70vw;
+    height: 60vh;
   }
 `;
 
@@ -149,8 +150,28 @@ const BlogImgDiv = styled.div`
 function blogFrame(props) {
   let item = props.Item;
   let months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+  let size = props?.size;
+  let height=0;
+  let width=0;
+  switch(size){
+    case 's':
+      height = "40vh";
+      width ="12vw";
+      break;
+    case 'm':
+      height = "50vh";
+      width ="28vw";
+      break;
+    case 'l':
+      height = "60vh";
+      width ="70vw";
+      break;
+    default:
+      height="60vh";
+      width = "40vw";
+  }
   return (
-    <BlogFrameDiv>
+    <BlogFrameDiv height={height} width={width}>
       <BlogInfo>{item.describe}</BlogInfo>
       <BlogImgDiv>
         <BlogImg
