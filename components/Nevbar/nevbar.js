@@ -10,6 +10,7 @@ function Nevbar() {
     { Name: "About", Link: "/about" },
     { Name: "Contact", Link: "/contact" },
     { Name: "Blog", Link: "/blog" },
+    { Name: "Editor", Link: "/Editor" },
   ];
   const [Ham, setHam] = useState(false);
   const toggleHeight = {
