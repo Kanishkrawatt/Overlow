@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import db from "../../db";
 import styled from "styled-components";
 
@@ -15,11 +15,7 @@ export const BlogDiv = styled.div`
   height: auto;
   margin-top: 6rem;
 `;
-function Slug(props) {
-  function createMarkup(d) {
-    return { __html: d };
-  }
-
+export default function Slug(props) {
   const [data] = props.myBlog;
   return (
     <BlogDiv>
@@ -28,28 +24,12 @@ function Slug(props) {
     </BlogDiv>
   );
 }
-export async function getStaticPaths() {
-  let data = await db.collection("entries").get();
-  let alldata = data.docs.map((entry) => entry.data());
-  const Paths = alldata.map((content) => {
-    return {
-      params: { id: content.fid.toString() },
-    };
-  });
-  return {
-    paths: Paths,
-    fallback: false,
-  };
-}
-export async function getStaticProps(context) {
-  const { id } = context.params;
+export async function getServerSideProps(content) {
+  const { id } = content.query;
   const data = await db.collection("entries").where("fid", "==", id).get();
   let Alldata = data.docs.map((entry) => entry.data());
 
   return {
     props: { myBlog: Alldata },
-    revalidate: 10,
   };
 }
-
-export default Slug;
