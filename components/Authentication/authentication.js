@@ -47,10 +47,12 @@ export const RoundButton = styled.div`
 export const SButton = styled.div`
   border: 1px solid #c2c2c2;
   padding: 1.2rem 2rem;
-  width: 80%;
+  min-width: 80%;
+  width: auto;
   height: 2rem;
   display: flex;
   cursor: pointer;
+  flex-wrap: nowrap;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   justify-content: center;
