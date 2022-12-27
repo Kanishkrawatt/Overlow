@@ -107,7 +107,7 @@ function Home(props) {
         <Link href="/create">
           <SButton
             style={{
-              width: "11%",
+              minWidth: "11%",
               fontSize: "0.75rem",
               backgroundColor: "white",
               border: "1px solid black",
