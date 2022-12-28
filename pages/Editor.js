@@ -12,6 +12,11 @@ const EditorPage = styled.div`
   padding: 0 2rem;
   justify-content: space-evenly;
   align-items: center;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 10rem;
+    height: 180vh;
+  }
 `;
 
 const EditorText = styled.div`
@@ -21,6 +26,9 @@ const EditorText = styled.div`
   border: 1px solid #eaeaea;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const Preview = styled.div`
   width: 45%;
@@ -29,8 +37,12 @@ const Preview = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  white-space: pre;
   padding: 1rem 2rem;
   overflow-y: scroll;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -115,6 +127,7 @@ const TextArea = styled.textarea`
   resize: none;
   background-color: #f1f6f5;
   overflow: auto;
+  border-bottom: 1px solid black;
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -156,7 +169,7 @@ const Editor = () => {
         <TextArea ref={textref} onChange={handleChange} />
       </EditorText>
       <Preview>
-        <PreviewTop >Preview</PreviewTop>
+        <PreviewTop>Preview</PreviewTop>
         <PreviewSection value={text} />
       </Preview>
     </EditorPage>
