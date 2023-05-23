@@ -10,7 +10,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import BackupTableIcon from "@mui/icons-material/BackupTable";
 import ImageIcon from "@mui/icons-material/Image";
 import LinkIcon from "@mui/icons-material/Link";
-import { LanTwoTone } from "@mui/icons-material";
+import SaveIcon from "@mui/icons-material/Save";
 
 const Topbar = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Option = styled.div`
   }
 `;
 
-const EditorTopbar = ({ textref }) => {
+const EditorTopbar = ({ textref, save }) => {
   const Operation = (symbol, symbol2 = "") => {
     const text = textref.current;
     const selectedText = text.value.substring(
@@ -132,6 +132,13 @@ const EditorTopbar = ({ textref }) => {
       </Option>
       <Option onClick={() => {}}>
         <LinkIcon />
+      </Option>
+      <Option
+        onClick={() => {
+          save();
+        }}
+      >
+        <SaveIcon />
       </Option>
     </Topbar>
   );

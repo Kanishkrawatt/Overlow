@@ -1,138 +1,212 @@
-import React, { useEffect, useId, useRef, useMemo, useState } from "react";
-import axios from "axios";
-import { CheckUser, UserInfo } from "../../firebase/AuthFunctions";
-import SigninPage from "../../components/SignInPage";
-
-function admin() {
-  const Title = useRef();
-  const Content = useRef();
-  const Describe = useRef();
-  const Img = useRef();
-  const fid = useId();
-  const u = useRef();
-  const user = UserInfo();
-
-  function submitfunc(e) {
-    e.preventDefault();
-    console.log(u);
-    const date = new Date();
-    let data = {
-      fid,
-      title: Title.current.value,
-      content: Content.current.value,
-      describe: Describe.current.value,
-      image: Img.current.value,
-      date,
-      user: u,
-    };
-    console.log(data);
-    axios.post("/api/blogEntry", data);
-    Title.current.value = "";
-    Content.current.value = "";
-    Describe.current.value = "";
-    Img.current.value = "";
+import React, { useRef } from "react";
+import EditorTopbar from "../../components/Editor/EditorTopbar";
+import styled from "styled-components";
+import PreviewSection from "../../components/Editor/PreviewSection";
+import { useId } from "react";
+export const EditorPage = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90vh;
+  background-color: #f5f5f5;
+  margin-top: 10vh;
+  padding: 0 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 10rem;
+    height: 180vh;
   }
+`;
+
+export const EditorText = styled.div`
+  width: 45%;
+  height: 80%;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
+export const Preview = styled.div`
+  width: 45%;
+  height: 80%;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  white-space: pre;
+  padding: 1rem 2rem;
+  overflow-y: scroll;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  ol,
+  ul {
+    padding-left: 1rem;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  ul {
+    font-size: 1rem;
+    font-weight: 400;
+    list-style: circle;
+  }
+  ol {
+    font-size: 1rem;
+    font-weight: 400;
+    list-style: decimal;
+  }
+  blockquote {
+    height: auto;
+    width: 100%;
+    border-left: 5px solid #eaeaea;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+    background-color: #f1f6f5;
+  }
+  code {
+    display: flex;
+    height: auto;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    white-space: pre;
+    font-weight: 400;
+    background-color: #f1f6f5;
+  }
+`;
+export const TextArea = styled.textarea`
+  width: 100%;
+  height: 90%;
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  resize: none;
+  background-color: #f1f6f5;
+  overflow: auto;
+  border-bottom: 1px solid black;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #eaeaea;
+  }
+`;
+export const PreviewTop = styled.div`
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding: 0 1rem;
+  font-family: "Rum Raisin", sans-serif;
+  letter-spacing: 0.125rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000;
+`;
+
+import showdown from "showdown";
+import axios from "axios";
+import auth from "../../firebase/auth";
+const Editor = () => {
+  const id = useId();
+  const [text, setText] = React.useState("");
+  const textref = useRef(null);
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+  const save = React.useCallback(() => {
+    const textToSave = textref.current.value;
+    const converter = new showdown.Converter({
+      disableForced4SpacesIndentedSublists: true,
+      emoji: true,
+      ghCodeBlocks: true,
+      tables: true,
+      strikethrough: true,
+      tasklists: true,
+      underline: true,
+      backslashEscapesHTMLTags: true,
+    });
+    const values = textToSave.split("  ").join("\n");
+    const html = converter.makeHtml(values);
+    const title = values.split("\n")[0].split("# ")[1];
+    const content = html.split("\n").slice(1).join("\n");
+    axios.post("/api/blogEntry", {
+      title,
+      content,
+      html,
+      fid: id,
+      author:
+        auth?.currentUser?.displayName ??
+        auth?.currentUser?.email ??
+        "Anonymous",
+      date: new Date(),
+    });
+  }, [textref]);
 
   return (
-    <>
-      {user ? (
-        <form className="w-full max-w-lg mx-auto my-[5%]" onSubmit={submitfunc}>
-          <h1 className="text-2xl text-center font-bold mb-[50px] mt-5">
-            Create Blog
-          </h1>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs mb-2"
-                htmlFor="grid-first-name"
-              >
-                Blog Title
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name"
-                type="text"
-                ref={Title}
-              />
-            </div>
-            <div className="w-full px-3 md:w-1/2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs  mb-2"
-                htmlFor="grid-password"
-              >
-                Uname
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="text"
-                value={user.displayName}
-                ref={user}
-              />
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs  mb-2"
-                htmlFor="grid-password"
-              >
-                Blog Disciption
-              </label>
-              <textarea
-                rows="3"
-                className="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  resize-none"
-                type="text"
-                ref={Describe}
-              />
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs  mb-2"
-                htmlFor="grid-password"
-              >
-                Blog Img
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="text"
-                ref={Img}
-              />
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs  mb-2"
-                htmlFor="grid-password"
-              >
-                Blog Content
-              </label>
-              <textarea
-                className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                id="message"
-                ref={Content}
-              ></textarea>
-            </div>
-          </div>
-          <div className="md:flex md:items-center">
-            <div className="md:w-1/3">
-              <button
-                className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded"
-                type="submit"
-              >
-                Create Blog
-              </button>
-            </div>
-            <div className="md:w-2/3"></div>
-          </div>
-        </form>
-      ) : (
-        <SigninPage />
-      )}
-    </>
+    <EditorPage>
+      <EditorText>
+        <EditorTopbar textref={textref} save={save} />
+        <TextArea ref={textref} onChange={handleChange} />
+      </EditorText>
+      <Preview>
+        <PreviewTop>Preview</PreviewTop>
+        <PreviewSection value={text} />
+      </Preview>
+    </EditorPage>
   );
-}
+};
 
-export default admin;
+export default Editor;

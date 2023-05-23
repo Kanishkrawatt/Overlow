@@ -17,8 +17,7 @@ const Profile = styled.div`
   align-items: center;
   height: 2.5rem;
   width: 2.5rem;
-  margin-left: 2rem;
-  margin-top: 0.7rem;
+  margin: 0 1rem;
   border-radius: 5rem;
   background-color: #303030;
   color: #fcfcfc;
@@ -39,12 +38,10 @@ const BlogFrameDiv = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
-  height: ${props=>props.height};
-  min-width:${props=>props.width};
+  height: ${(props) => props.height};
+  min-width: ${(props) => props.width};
   width: 25%;
   border-radius: 3rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
   max-height: 65vh;
   color: black;
   text-align: center;
@@ -75,7 +72,12 @@ const BlogImg = styled(Image)`
 `;
 const BlogTitle = styled.h1`
   font-size: 1.25rem;
-  padding: 2rem 2rem 1rem;
+  height: 10vh;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   cursor: pointer;
 `;
 
@@ -149,44 +151,66 @@ const BlogImgDiv = styled.div`
 
 function blogFrame(props) {
   let item = props.Item;
-  let months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   let size = props?.size;
-  let height=0;
-  let width=0;
-  switch(size){
-    case 's':
+  let height = 0;
+  let width = 0;
+  switch (size) {
+    case "s":
       height = "40vh";
-      width ="12vw";
+      width = "12vw";
       break;
-    case 'm':
+    case "m":
       height = "50vh";
-      width ="28vw";
+      width = "28vw";
       break;
-    case 'l':
+    case "l":
       height = "60vh";
-      width ="70vw";
+      width = "70vw";
       break;
     default:
-      height="60vh";
+      height = "60vh";
       width = "40vw";
   }
   return (
-    <BlogFrameDiv height={height} width={width}>
-      <BlogInfo>{item.describe}</BlogInfo>
-      <BlogImgDiv>
-        <BlogImg
-          src={item.image}
-          alt={item.title}
-          placeholder="blur"
-          layout="fill"
-          blurDataURL={item.image}
-        />
-      </BlogImgDiv>
+    <BlogFrameDiv
+      height={item?.image ? height : item?.describe ? "30vh" : "10vh"}
+      width={width}
+    >
+      {item?.describe && <BlogInfo>{item.describe}</BlogInfo>}
+      {item?.image && (
+        <BlogImgDiv>
+          <BlogImg
+            src={item.image}
+            alt={item.title}
+            placeholder="blur"
+            layout="fill"
+            blurDataURL={item.image}
+          />
+        </BlogImgDiv>
+      )}
       <BlogTitleDiv>
         <Profile>K</Profile>
         <BlogTitle>
-          <Link href={`/blogp/${item.fid}`}>{item.title}</Link>
-          <BlogDate>{item.date.substring(8,10)} {months[item.date.substring(5,7)]}</BlogDate>
+          {item?.title && <Link href={`/blogp/${item.fid}`}>{item.title}</Link>}
+          {item?.date && (
+            <BlogDate>
+              {item.date.split("/")[1]} {months[item.date.split("-")[1] - 1]}{" "}
+            </BlogDate>
+          )}
         </BlogTitle>
       </BlogTitleDiv>
     </BlogFrameDiv>

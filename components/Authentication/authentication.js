@@ -4,8 +4,8 @@ import styled from "styled-components";
 import {
   signInWithGoogle,
   signOutWithGoogle,
-  UserInfo,
 } from "../../firebase/AuthFunctions";
+import auth from "../../firebase/auth";
 
 export const DropDownMenu = styled.div`
   height: 20vh;
@@ -61,16 +61,16 @@ export const SButton = styled.div`
 `;
 function autherntication() {
   const [menu, setMenu] = useState(false);
-  const user = UserInfo();
+  const user = auth?.currentUser;
   const signIn = () => {
     signInWithGoogle();
   };
   const signOut = () => {
     signOutWithGoogle();
   };
-  let photoURL;
-  if (user !== null) {
-    photoURL = user.photoURL;
+  let photoURL = null;
+  if (user) {
+    photoURL = user?.photoURL;
   }
   const ButtonClickEffect = {
     backgroundColor: "#f2f2f2",
@@ -91,7 +91,7 @@ function autherntication() {
       >
         {menu ? (
           "X"
-        ) : user ? (
+        ) : photoURL ? (
           <img className="rounded-full " src={photoURL} alt="P" />
         ) : (
           "N/A"

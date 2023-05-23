@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import EditorTopbar from "../components/Editor/EditorTopbar";
 import styled from "styled-components";
 import PreviewSection from "../components/Editor/PreviewSection";
-const EditorPage = styled.div`
+export const EditorPage = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -19,7 +19,7 @@ const EditorPage = styled.div`
   }
 `;
 
-const EditorText = styled.div`
+export const EditorText = styled.div`
   width: 45%;
   height: 80%;
   background-color: #fff;
@@ -30,7 +30,7 @@ const EditorText = styled.div`
     width: 100%;
   }
 `;
-const Preview = styled.div`
+export const Preview = styled.div`
   width: 45%;
   height: 80%;
   border: 1px solid #eaeaea;
@@ -117,7 +117,7 @@ const Preview = styled.div`
     background-color: #f1f6f5;
   }
 `;
-const TextArea = styled.textarea`
+export const TextArea = styled.textarea`
   width: 100%;
   height: 90%;
   border: none;

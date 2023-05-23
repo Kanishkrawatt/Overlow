@@ -8,6 +8,8 @@ import styled from "styled-components";
 const BlogDiv = styled.div`
   text-align: center;
   display: flex;
+  min-height: 100vh;
+  height: auto;
   flex-direction: column;
   align-items: center;
 `;
@@ -26,7 +28,7 @@ const BlogData = styled.div`
   display: flex;
   flex-wrap: wrap;
   /* flex-direction: column; */
-  justify-content: center;
+  padding: 0 8vw;
   gap: 2rem;
   margin-bottom: 2rem;
 `;
@@ -48,7 +50,7 @@ function Blog(props) {
   );
 }
 export async function getStaticProps() {
-  const querySnapshot = await getDocs(collection(db, "entries"));
+  const querySnapshot = await getDocs(collection(db, "blogs"));
   const alldata = querySnapshot.docs.map((doc) => doc.data());
   return {
     props: { alldata },
