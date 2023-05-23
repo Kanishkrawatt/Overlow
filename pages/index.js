@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Foot from "../components/Footer/Foot";
 import BlogFrame from "../components/BlogFrame/blogFrame";
-import db from "../db";
-import Image from "next/image";
+import db from "../firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import styled from "styled-components";
 import { SButton } from "../components/Authentication/authentication";
 import Link from "next/link";
@@ -138,8 +138,8 @@ function Home(props) {
   );
 }
 export async function getStaticProps(context) {
-  let data = await db.collection("entries").get();
-  let Alldata = data.docs.map((entry) => entry.data());
+  const querySnapshot = await getDocs(collection(db, "entries"));
+  const Alldata = querySnapshot.docs.map((doc) => doc.data());
   return {
     props: { Alldata }, // will be passed to the page component as props
     revalidate: 1,

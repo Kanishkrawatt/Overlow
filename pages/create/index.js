@@ -1,6 +1,6 @@
-import React, { useEffect, useId, useRef, useMemo,useState } from "react";
+import React, { useEffect, useId, useRef, useMemo, useState } from "react";
 import axios from "axios";
-import { CheckUser, UserInfo } from "../../firebase/firebasefunction";
+import { CheckUser, UserInfo } from "../../firebase/AuthFunctions";
 import SigninPage from "../../components/SignInPage";
 
 function admin() {
@@ -23,7 +23,7 @@ function admin() {
       describe: Describe.current.value,
       image: Img.current.value,
       date,
-      user:u,
+      user: u,
     };
     console.log(data);
     axios.post("/api/blogEntry", data);
@@ -67,7 +67,6 @@ function admin() {
                 type="text"
                 value={user.displayName}
                 ref={user}
-
               />
             </div>
           </div>
@@ -123,7 +122,7 @@ function admin() {
                 className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded"
                 type="submit"
               >
-                Create Blog 
+                Create Blog
               </button>
             </div>
             <div className="md:w-2/3"></div>

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { useState, useTransition } from "react";
-import { signInWithGoogle } from "../../firebase/firebasefunction";
+import { signInWithGoogle } from "../../firebase/AuthFunctions";
 import styled from "styled-components";
 import user from "../../public/user.png";
-import googleImg from "../../public/google.png"
+import googleImg from "../../public/google.png";
 import { SButton } from "../Authentication/authentication";
 export const Page = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const Page = styled.div`
   border-radius: 2rem;
   padding: 2rem;
   background: linear-gradient(45deg, #97c4b8 30%, #ccf3ee 70%);
-  &::selection{
+  &::selection {
     background-color: transparent;
   }
 `;
@@ -24,7 +24,7 @@ export const InputBox = styled.input`
   width: 100%;
   margin: 10px 0 10px 0;
   border-radius: 1rem;
-  &::selection{
+  &::selection {
     background-color: transparent;
   }
 `;
@@ -34,16 +34,16 @@ export const Submitbtn = styled(SButton)`
   color: black;
   width: 100%;
   margin: 2rem;
-  &::selection{
+  &::selection {
     background-color: transparent;
   }
 `;
 export const MainDiv = styled.div`
-background-color: transparent;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
 function SigninPage() {
   const [state, setState] = useState(false);
@@ -68,12 +68,17 @@ function SigninPage() {
         <Submitbtn
           type="button"
           id="button"
-          style={{ marginTop: "0",display:"flex",justifyContent:"space-evenly" }}
+          style={{
+            marginTop: "0",
+            display: "flex",
+            justifyContent: "space-evenly",
+          }}
           onClick={() => {
             signInWithGoogle();
           }}
         >
-          <Image src={googleImg} alt="img" height="20px" width="20px" />{state ? "Sign up" : "Login"} with Google
+          <Image src={googleImg} alt="img" height="20px" width="20px" />
+          {state ? "Sign up" : "Login"} with Google
         </Submitbtn>
         <p
           style={{ cursor: "pointer" }}

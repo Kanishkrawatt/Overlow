@@ -5,7 +5,7 @@ import {
   signInWithGoogle,
   signOutWithGoogle,
   UserInfo,
-} from "../../firebase/firebasefunction";
+} from "../../firebase/AuthFunctions";
 
 export const DropDownMenu = styled.div`
   height: 20vh;
@@ -40,10 +40,10 @@ export const RoundButton = styled.div`
   &::selection {
     background-color: transparent;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     display: none;
-}
-`;  
+  }
+`;
 export const SButton = styled.div`
   border: 1px solid #c2c2c2;
   padding: 1.2rem 2rem;

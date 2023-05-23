@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BlogFrame from "../../components/BlogFrame/blogFrame";
-import db from "../../db";
+import db from "../../firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 import styled from "styled-components";
 
@@ -47,8 +48,8 @@ function Blog(props) {
   );
 }
 export async function getStaticProps() {
-  let data = await db.collection("entries").get();
-  let alldata = data.docs.map((entry) => entry.data());
+  const querySnapshot = await getDocs(collection(db, "entries"));
+  const alldata = querySnapshot.docs.map((doc) => doc.data());
   return {
     props: { alldata },
     revalidate: 10,

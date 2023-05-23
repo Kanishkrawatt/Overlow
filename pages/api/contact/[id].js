@@ -1,5 +1,4 @@
-import db from "../../../db";
-
+import db from "../../../firebase/firestore";
 export default async (req, res) => {
   const { id } = req.query;
 

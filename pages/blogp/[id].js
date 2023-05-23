@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import db from "../../db";
+import db from "../../firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 import styled from "styled-components";
 
 export const Heading = styled.div`
@@ -19,16 +21,16 @@ export default function Slug(props) {
   const [data] = props.myBlog;
   return (
     <BlogDiv>
-      <Heading>{data.title}</Heading>
-      <p>{data.content}</p>
+      <Heading>{data?.title}</Heading>
+      <p>{data?.content}</p>
     </BlogDiv>
   );
 }
 export async function getServerSideProps(content) {
   const { id } = content.query;
-  const data = await db.collection("entries").where("fid", "==", id).get();
-  let Alldata = data.docs.map((entry) => entry.data());
-
+  const q = query(collection(db, "entries"), where("fid", "==", id));
+  const querySnapshot = await getDocs(q);
+  const Alldata = querySnapshot.docs.map((doc) => doc.data());
   return {
     props: { myBlog: Alldata },
   };
