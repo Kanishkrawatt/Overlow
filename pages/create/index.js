@@ -166,6 +166,7 @@ const Editor = () => {
   const handleChange = (e) => {
     setText(e.target.value);
   };
+  const user = auth?.currentUser;
   const save = React.useCallback(() => {
     const textToSave = textref.current.value;
     const converter = new showdown.Converter({
@@ -196,16 +197,32 @@ const Editor = () => {
   }, [textref]);
 
   return (
-    <EditorPage>
-      <EditorText>
-        <EditorTopbar textref={textref} save={save} />
-        <TextArea ref={textref} onChange={handleChange} />
-      </EditorText>
-      <Preview>
-        <PreviewTop>Preview</PreviewTop>
-        <PreviewSection value={text} />
-      </Preview>
-    </EditorPage>
+    <>
+      {user ? (
+        <EditorPage>
+          <EditorText>
+            <EditorTopbar textref={textref} save={save} />
+            <TextArea ref={textref} onChange={handleChange} />
+          </EditorText>
+          <Preview>
+            <PreviewTop>Preview</PreviewTop>
+            <PreviewSection value={text} />
+          </Preview>
+        </EditorPage>
+      ) : (
+        <div
+          style={{
+            height: "100vh",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h1>Sign in to write a blog post</h1>
+        </div>
+      )}
+    </>
   );
 };
 
